@@ -1,0 +1,37 @@
+<div class="row">
+    <h2 style="margin-left: 60px; color: white;">Bienvenue dans votre validateur de pret bancaire</h2>
+    <p style="margin-left: 60px; color: white;">Veuillez remplir le formulaire ci-dessous pour savoir si vous êtes aptes à recevoir un pret bancaire :</p>
+    <div class="col-sm-8 col-sm-offset-2">
+        <form [formGroup]="loanValidatorForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="age">Enter your age:</label>
+                <input type="text" id="age" class="form-control" formControlName="age">
+            </div>
+            <div class="form-group" *ngFor="let data of datas, let i = index">
+                <label for="question_form">{{data.question}}</label>
+                <select id="question_form_n{{i}}" class="form-control" formControlName="question_form_{{i}}">
+                    <option value="" disabled selected>Select your answer</option>
+                    <option *ngFor="let answer of data.answers" value="answer">{{answer}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="age">Enter your duration:</label>
+                <input type="text" id="duration" class="form-control" formControlName="duration">
+            </div>
+            <div class="form-group">
+                <label for="age">Enter your compaign:</label>
+                <input type="text" id="compaign" class="form-control" formControlName="compaign">
+            </div>
+            <div class="form-group">
+                <label for="age">Enter your pdays:</label>
+                <input type="text" id="pdays" class="form-control" formControlName="pdays">
+            </div>
+            <div class="form-group">
+                <label for="age">Enter your previous:</label>
+                <input type="text" id="previous" class="form-control" formControlName="previous">
+            </div>
+            <button class="btn btn-primary" type="submit"
+                [disabled]="loanValidatorForm.invalid">Valider</button>
+        </form>
+    </div>
+</div>
